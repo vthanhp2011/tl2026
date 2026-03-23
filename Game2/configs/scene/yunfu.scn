@@ -1,0 +1,8 @@
+[System]
+navmapname=yunfu.nav
+monsterfile=yunfu_monster.ini
+patrolpoint=yunfu_patrolpoint.ini
+growpointdata=yunfu_growpoint.txt
+growpointsetup=yunfu_growpointsetup.txt
+eventfile=yunfu_area.ini
+platformfile=yunfu_platform.ini

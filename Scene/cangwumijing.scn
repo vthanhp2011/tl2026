@@ -1,0 +1,8 @@
+[System]
+navmapname=cangwumijing.nav
+monsterfile=cangwumijing_monster.ini
+patrolpoint=cangwumijing_patrolpoint.ini
+growpointdata=cangwumijing_growpoint.txt
+growpointsetup=cangwumijing_growpointsetup.txt
+eventfile=cangwumijing_area.ini
+platformfile=cangwumijing_platform.ini

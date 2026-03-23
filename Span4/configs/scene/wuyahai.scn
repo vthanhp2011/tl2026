@@ -1,0 +1,8 @@
+[System]
+navmapname=wuyahai.nav
+monsterfile=wuyahai_monster.ini
+patrolpoint=wuyahai_patrolpoint.ini
+growpointdata=wuyahai_growpoint.txt
+growpointsetup=wuyahai_growpointsetup.txt
+eventfile=wuyahai_area.ini
+platformfile=wuyahai_platform.ini

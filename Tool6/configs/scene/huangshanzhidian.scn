@@ -1,0 +1,8 @@
+[System]
+navmapname=huangshanzhidian.nav
+monsterfile=huangshanzhidian_monster.ini
+patrolpoint=huangshanzhidian_patrolpoint.ini
+growpointdata=huangshanzhidian_growpoint.txt
+growpointsetup=huangshanzhidian_growpointsetup.txt
+eventfile=huangshanzhidian_area.ini
+platformfile=huangshanzhidian_platform.ini

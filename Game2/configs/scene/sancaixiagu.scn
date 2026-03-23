@@ -1,0 +1,8 @@
+[System]
+navmapname=sancaixiagu.nav
+monsterfile=sancaixiagu_monster.ini
+patrolpoint=sancaixiagu_patrolpoint.ini
+growpointdata=sancaixiagu_growpoint.txt
+growpointsetup=sancaixiagu_growpointsetup.txt
+eventfile=sancaixiagu_area.ini
+platformfile=sancaixiagu_platform.ini

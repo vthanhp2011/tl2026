@@ -1,0 +1,8 @@
+[System]
+navmapname=ZhengBaSai.nav
+monsterfile=ZhengBaSai_monster.ini
+patrolpoint=ZhengBaSai_patrolpoint.ini
+growpointdata=ZhengBaSai_growpoint.txt
+growpointsetup=ZhengBaSai_growpointsetup.txt
+eventfile=ZhengBaSai_area.ini
+platformfile=ZhengBaSai_platform.ini

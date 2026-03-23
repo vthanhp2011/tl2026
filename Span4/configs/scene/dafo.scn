@@ -1,0 +1,8 @@
+[System]
+navmapname=dafo.nav
+monsterfile=dafo_monster.ini
+patrolpoint=dafo_patrolpoint.ini
+growpointdata=dafo_growpoint.txt
+growpointsetup=dafo_growpointsetup.txt
+eventfile=dafo_area.ini
+platformfile=dafo_platform.ini

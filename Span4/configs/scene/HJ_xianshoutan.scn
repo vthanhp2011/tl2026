@@ -1,0 +1,6 @@
+[System]
+navmapname=HJ_xianshoutan.nav
+monsterfile=HJ_xianshoutan_monster.ini
+patrolpoint=HJ_xianshoutan_patrolpoint.ini
+growpointdata=HJ_xianshoutan_growpoint.txt
+eventfile=HJ_xianshoutan_area.ini

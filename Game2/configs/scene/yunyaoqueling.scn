@@ -1,0 +1,8 @@
+[System]
+navmapname=yunyaoqueling.nav
+monsterfile=yunyaoqueling_monster.ini
+patrolpoint=yunyaoqueling_patrolpoint.ini
+growpointdata=yunyaoqueling_growpoint.txt
+growpointsetup=yunyaoqueling_growpointsetup.txt
+eventfile=yunyaoqueling_area.ini
+platformfile=yunyaoqueling_platform.ini

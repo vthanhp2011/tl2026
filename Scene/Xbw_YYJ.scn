@@ -1,0 +1,8 @@
+[System]
+navmapname=Xbw_YYJ.nav
+monsterfile=Xbw_YYJ_monster.ini
+patrolpoint=Xbw_YYJ_patrolpoint.ini
+growpointdata=Xbw_YYJ_growpoint.txt
+growpointsetup=Xbw_YYJ_growpointsetup.txt
+eventfile=Xbw_YYJ_area.ini
+platformfile=Xbw_YYJ_platform.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=tianlonghuanjing.nav
+monsterfile=tianlonghuanjing_monster.ini
+patrolpoint=tianlonghuanjing_patrolpoint.ini
+growpointdata=tianlonghuanjing_growpoint.txt
+growpointsetup=tianlonghuanjing_growpointsetup.txt
+eventfile=tianlonghuanjing_area.ini
+platformfile=tianlonghuanjing_platform.ini

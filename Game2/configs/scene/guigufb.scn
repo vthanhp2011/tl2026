@@ -1,0 +1,8 @@
+[System]
+navmapname=guigufb.nav
+monsterfile=guigufb_monster.ini
+patrolpoint=guigufb_patrolpoint.ini
+growpointdata=guigufb_growpoint.txt
+growpointsetup=guigufb_growpointsetup.txt
+eventfile=guigufb_area.ini
+platformfile=guigufb_platform.ini

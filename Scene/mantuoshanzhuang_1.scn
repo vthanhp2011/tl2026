@@ -1,0 +1,5 @@
+[System]
+navmapname=mantuoshanzhuang_1.nav
+monsterfile=mantuoshanzhuang_1_monster.ini
+patrolpoint=mantuoshanzhuang_1_patrolpoint.ini
+eventfile=mantuoshanzhuang_1_area.ini

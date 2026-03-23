@@ -1,0 +1,8 @@
+[System]
+navmapname=tongquetai.nav
+monsterfile=tongquetai_monster.ini
+patrolpoint=tongquetai_patrolpoint.ini
+growpointdata=tongquetai_growpoint.txt
+growpointsetup=tongquetai_growpointsetup.txt
+eventfile=tongquetai_area.ini
+platformfile=tongquetai_platform.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=dakuiyihai.nav
+monsterfile=dakuiyihai_monster.ini
+patrolpoint=dakuiyihai_patrolpoint.ini
+growpointdata=dakuiyihai_growpoint.txt
+growpointsetup=dakuiyihai_growpointsetup.txt
+eventfile=dakuiyihai_area.ini
+platformfile=dakuiyihai_platform.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=zhuangyuan_5.nav
+monsterfile=zhuangyuan_5_monster.ini
+patrolpoint=zhuangyuan_5_patrolpoint.ini
+growpointdata=zhuangyuan_5_growpoint.txt
+growpointsetup=zhuangyuan_5_growpointsetup.txt
+eventfile=zhuangyuan_5_area.ini
+platformfile=zhuangyuan_5_platform.ini

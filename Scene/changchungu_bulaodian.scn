@@ -1,0 +1,7 @@
+[System]
+navmapname=changchungu_bulaodian.nav
+monsterfile=changchungu_bulaodian_monster.ini
+patrolpoint=changchungu_bulaodian_patrolpoint.ini
+growpointdata=changchungu_bulaodian_growpoint.txt
+growpointsetup=changchungu_bulaodian_growpointsetup.txt
+eventfile=changchungu_bulaodian_area.ini

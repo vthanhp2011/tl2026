@@ -1,0 +1,5 @@
+[System]
+navmapname=wufangjing_3.nav
+monsterfile=wufangjing_3_monster.ini
+patrolpoint=wufangjing_3_patrolpoint.ini
+eventfile=wufangjing_3_area.ini

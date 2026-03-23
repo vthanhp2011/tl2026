@@ -1,0 +1,6 @@
+[System]
+navmapname=tangmenjj.nav
+monsterfile=tangmenjj_monster.ini
+patrolpoint=tangmenjj_patrolpoint.ini
+eventfile=tangmenjj_area.ini
+platformfile=tangmenjj_platform.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=sanshenhuanjing.nav
+monsterfile=sanshenhuanjing_monster.ini
+patrolpoint=sanshenhuanjing_patrolpoint.ini
+growpointdata=sanshenhuanjing_growpoint.txt
+growpointsetup=sanshenhuanjing_growpointsetup.txt
+eventfile=sanshenhuanjing_area.ini
+platformfile=sanshenhuanjing_platform.ini

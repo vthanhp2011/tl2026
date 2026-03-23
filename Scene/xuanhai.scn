@@ -1,0 +1,8 @@
+[System]
+navmapname=xuanhai.nav
+monsterfile=xuanhai_monster.ini
+patrolpoint=xuanhai_patrolpoint.ini
+growpointdata=xuanhai_growpoint.txt
+growpointsetup=xuanhai_growpointsetup.txt
+eventfile=xuanhai_area.ini
+platformfile=xuanhai_platform.ini

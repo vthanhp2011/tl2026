@@ -1,0 +1,75 @@
+local class = require "class"
+local define = require "define"
+local script_base = require "script_base"
+local odali_baichongyi = class("odali_baichongyi", script_base)
+odali_baichongyi.script_id = 002058
+odali_baichongyi.g_eventList = {125020}
+
+function odali_baichongyi:UpdateEventList(selfId, targetId)
+    self:BeginEvent(self.script_id)
+    self:AddText(
+        "  #G$N#W英雄！来嵩山封禅台竞技场展示一下你的实力吧！#r  #G你在进入封禅台之前必须加入一支队伍，这支队伍中的所有人在进入封禅台后都和你属于同一个阵营，除了他们以外，在封禅台上的其他所有人都是你的对手。#W #r  怎么样，想来试试看吗？"
+    )
+    for i, eventId in pairs(self.g_eventList) do
+        self:CallScriptFunction(eventId, "OnEnumerate", self, selfId, targetId)
+    end
+    self:EndEvent()
+    self:DispatchEventList(selfId, targetId)
+end
+
+function odali_baichongyi:OnDefaultEvent(selfId, targetId)
+    self:UpdateEventList(selfId, targetId)
+end
+
+function odali_baichongyi:OnEventRequest(selfId, targetId, arg, index)
+    for i, findId in pairs(self.g_eventList) do
+        if arg == findId then
+            self:CallScriptFunction(arg, "OnDefaultEvent", selfId, targetId, arg, index)
+            return
+        end
+    end
+end
+
+function odali_baichongyi:OnMissionAccept(selfId, targetId, missionScriptId)
+    for i, findId in pairs(self.g_eventList) do
+        if missionScriptId == findId then
+            local ret = self:CallScriptFunction(missionScriptId, "CheckAccept", selfId)
+            if ret > 0 then
+                self:CallScriptFunction(missionScriptId, "OnAccept", selfId)
+            end
+            return
+        end
+    end
+end
+
+function odali_baichongyi:OnMissionRefuse(selfId, targetId, missionScriptId)
+    for i, findId in pairs(self.g_eventList) do
+        if missionScriptId == findId then
+            self:UpdateEventList(selfId, targetId)
+            return
+        end
+    end
+end
+
+function odali_baichongyi:OnMissionContinue(selfId, targetId, missionScriptId)
+    for i, findId in pairs(self.g_eventList) do
+        if missionScriptId == findId then
+            self:CallScriptFunction(missionScriptId, "OnContinue", selfId, targetId)
+            return
+        end
+    end
+end
+
+function odali_baichongyi:OnMissionSubmit(selfId, targetId, missionScriptId, selectRadioId)
+    for i, findId in pairs(self.g_eventList) do
+        if missionScriptId == findId then
+            self:CallScriptFunction(missionScriptId, "OnSubmit", selfId, targetId, selectRadioId)
+            return
+        end
+    end
+end
+
+function odali_baichongyi:OnDie(selfId, killerId)
+end
+
+return odali_baichongyi

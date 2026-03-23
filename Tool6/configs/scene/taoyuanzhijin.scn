@@ -1,0 +1,6 @@
+[System]
+navmapname=taoyuanzhijin.nav
+monsterfile=taoyuanzhijin_monster.ini
+patrolpoint=taoyuanzhijin_patrolpoint.ini
+growpointdata=taoyuanzhijin_growpoint.txt
+eventfile=taoyuanzhijin_area.ini

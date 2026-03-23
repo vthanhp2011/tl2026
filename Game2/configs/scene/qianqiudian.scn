@@ -1,0 +1,8 @@
+[System]
+navmapname=qianqiudian.nav
+monsterfile=qianqiudian_monster.ini
+patrolpoint=qianqiudian_patrolpoint.ini
+growpointdata=qianqiudian_growpoint.txt
+growpointsetup=qianqiudian_growpointsetup.txt
+eventfile=qianqiudian_area.ini
+platformfile=qianqiudian_platform.ini

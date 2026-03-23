@@ -1,0 +1,12 @@
+local class = require "class"
+local define = require "define"
+local script_base = require "script_base"
+local otianlong_dizi_1 = class("otianlong_dizi_1", script_base)
+function otianlong_dizi_1:OnDefaultEvent(selfId, targetId)
+    self:BeginEvent(self.script_id)
+    self:AddText("  天龙寺乃是佛门清修之所。如果你需要帮助，请到寺门附近找知客僧帮忙。")
+    self:EndEvent()
+    self:DispatchEventList(selfId, targetId)
+end
+
+return otianlong_dizi_1

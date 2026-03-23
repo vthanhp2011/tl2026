@@ -1,0 +1,8 @@
+[System]
+navmapname=buguilin.nav
+monsterfile=buguilin_monster.ini
+patrolpoint=buguilin_patrolpoint.ini
+growpointdata=buguilin_growpoint.txt
+growpointsetup=buguilin_growpointsetup.txt
+eventfile=buguilin_area.ini
+platformfile=buguilin_platform.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=fengmingzhen.nav
+monsterfile=fengmingzhen_monster.ini
+patrolpoint=fengmingzhen_patrolpoint.ini
+growpointdata=fengmingzhen_growpoint.txt
+growpointsetup=fengmingzhen_growpointsetup.txt
+eventfile=fengmingzhen_area.ini
+platformfile=fengmingzhen_platform.ini

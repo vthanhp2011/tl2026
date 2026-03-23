@@ -1,0 +1,5 @@
+[System]
+navmapname=cangjingge_xiaochang.nav
+monsterfile=cangjingge_xiaochang_monster.ini
+patrolpoint=cangjingge_xiaochang_patrolpoint.ini
+eventfile=cangjingge_xiaochang_area.ini

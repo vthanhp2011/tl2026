@@ -1,0 +1,34 @@
+local class = require "class"
+local define = require "define"
+local script_base = require "script_base"
+local obj_39 = class("obj_39", script_base)
+obj_39.script_id = 331039
+obj_39.g_Impact1 = 3003
+obj_39.g_Impact2 = -1
+obj_39.g_SpecailObj = 39
+
+function obj_39:OnDefaultEvent(selfId, bagIndex) end
+
+function obj_39:IsSkillLikeScript(selfId) return 1 end
+
+function obj_39:CancelImpacts(selfId) return 0 end
+
+function obj_39:OnConditionCheck(selfId)
+    return self:LuaFnVerifyUsedItem(selfId)
+end
+
+function obj_39:OnDeplete(selfId)
+    return self:LuaFnDepletingUsedItem(selfId)
+end
+
+function obj_39:OnActivateOnce(selfId)
+    if (-1 ~= self.g_Impact1) then
+        local posX, posZ = self:GetWorldPos(selfId)
+        self:CreateSpecialObjByDataIndex(selfId, self.g_SpecailObj, posX, posZ)
+    end
+    return 1
+end
+
+function obj_39:OnActivateEachTick(selfId) return 1 end
+
+return obj_39

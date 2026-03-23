@@ -1,0 +1,10 @@
+[System]
+navmapname=mantuoshanzhuang.nav
+monsterfile=mantuoshanzhuang_monster.ini
+patrolpoint=mantuoshanzhuang_patrolpoint.ini
+growpointdata=mantuoshanzhuang_growpoint.txt
+growpointsetup=mantuoshanzhuang_growpointsetup.txt
+eventfile=mantuoshanzhuang_area.ini
+petfile=mantuoshanzhuang_pet.ini
+platformfile=mantuoshanzhuang_platform.ini
+stallinfodata=mantuoshanzhuang_StallInfo.stall

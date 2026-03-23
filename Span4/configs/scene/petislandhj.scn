@@ -1,0 +1,7 @@
+[System]
+navmapname=petislandhj.nav
+monsterfile=petislandhj_monster.ini
+patrolpoint=petislandhj_patrolpoint.ini
+growpointdata=petislandhj_growpoint.txt
+growpointsetup=petislandhj_growpointsetup.txt
+eventfile=petislandhj_area.ini

@@ -1,0 +1,5 @@
+[System]
+navmapname=Songliao_Xiuxi.nav
+monsterfile=Songliao_Xiuxi_monster.ini
+patrolpoint=Songliao_Xiuxi_patrolpoint.ini
+eventfile=Songliao_Xiuxi_area.ini

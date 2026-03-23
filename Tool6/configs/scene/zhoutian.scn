@@ -1,0 +1,8 @@
+[System]
+navmapname=zhoutian.nav
+monsterfile=zhoutian_monster.ini
+patrolpoint=zhoutian_patrolpoint.ini
+growpointdata=zhoutian_growpoint.txt
+growpointsetup=zhoutian_growpointsetup.txt
+eventfile=zhoutian_area.ini
+platformfile=zhoutian_platform.ini

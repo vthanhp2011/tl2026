@@ -1,0 +1,7 @@
+[System]
+navmapname=xiliangfenglin.nav
+monsterfile=xiliangfenglin_monster.ini
+patrolpoint=xiliangfenglin_patrolpoint.ini
+eventfile=xiliangfenglin_area.ini
+growpointdata=xiliangfenglin_growpoint.txt
+growpointsetup=xiliangfenglin_growpointsetup.txt

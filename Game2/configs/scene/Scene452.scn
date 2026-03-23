@@ -1,0 +1,8 @@
+[System]
+navmapname=Scene452.nav
+monsterfile=Scene452_monster.ini
+patrolpoint=Scene452_patrolpoint.ini
+growpointdata=Scene452_growpoint.txt
+growpointsetup=Scene452_growpointsetup.txt
+eventfile=Scene452_area.ini
+platformfile=Scene452_platform.ini

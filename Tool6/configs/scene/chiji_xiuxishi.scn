@@ -1,0 +1,7 @@
+[System]
+navmapname=chiji_xiuxishi.nav
+monsterfile=chiji_xiuxishi_monster.ini
+patrolpoint=chiji_xiuxishi_patrolpoint.ini
+growpointdata=chiji_xiuxishi_growpoint.txt
+growpointsetup=chiji_xiuxishi_growpointsetup.txt
+eventfile=chiji_xiuxishi_area.ini

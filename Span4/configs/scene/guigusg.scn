@@ -1,0 +1,7 @@
+[System]
+navmapname=guigusg.nav
+monsterfile=guigusg_monster.ini
+patrolpoint=guigusg_patrolpoint.ini
+eventfile=guigusg_area.ini
+growpointdata=guigusg_growpoint.txt
+growpointsetup=guigusg_growpointsetup.txt

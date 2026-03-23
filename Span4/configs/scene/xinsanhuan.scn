@@ -1,0 +1,8 @@
+[System]
+navmapname=xinsanhuan.nav
+monsterfile=xinsanhuan_monster.ini
+patrolpoint=xinsanhuan_patrolpoint.ini
+growpointdata=xinsanhuan_growpoint.txt
+growpointsetup=xinsanhuan_growpointsetup.txt
+eventfile=xinsanhuan_area.ini
+platformfile=xinsanhuan_platform.ini

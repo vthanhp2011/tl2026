@@ -1,0 +1,8 @@
+[System]
+navmapname=yanluotian.nav
+monsterfile=yanluotian_monster.ini
+patrolpoint=yanluotian_patrolpoint.ini
+growpointdata=yanluotian_growpoint.txt
+growpointsetup=yanluotian_growpointsetup.txt
+eventfile=yanluotian_area.ini
+platformfile=yanluotian_platform.ini

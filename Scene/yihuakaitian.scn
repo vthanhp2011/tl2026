@@ -1,0 +1,5 @@
+[System]
+navmapname=yihuakaitian.nav
+monsterfile=yihuakaitian_monster.ini
+patrolpoint=yihuakaitian_patrolpoint.ini
+eventfile=yihuakaitian_area.ini

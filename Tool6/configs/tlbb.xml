@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="login">
+    <Sequence>
+      <Inverter>
+        <HaveGUID/>
+      </Inverter>
+      <SelectCharacterGUID/>
+      <Inverter>
+        <IsConnectFinish/>
+      </Inverter>
+      <Connect/>
+      <Inverter>
+        <IsEnterSceneFinish/>
+      </Inverter>
+      <EnterScene/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="main">
+    <IfThenElse>
+      <IsEnterSceneFinish/>
+      <SubTree ID="online"/>
+      <SubTree ID="login"/>
+    </IfThenElse>
+  </BehaviorTree>
+
+  <BehaviorTree ID="online">
+    <Sequence>
+      <Inverter>
+        <IsNearXiaoChang/>
+      </Inverter>
+      <Delay delay_msec="5000">
+        <MoveToXiaoChang/>
+      </Delay>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="Connect"
+            editable="true"/>
+    <Action ID="EnterScene"
+            editable="true"/>
+    <Condition ID="HaveGUID"
+               editable="true"/>
+    <Condition ID="IsConnectFinish"
+               editable="true"/>
+    <Condition ID="IsEnterSceneFinish"
+               editable="true"/>
+    <Condition ID="IsNearXiaoChang"
+               editable="true"/>
+    <Action ID="MoveToXiaoChang"
+            editable="true"/>
+    <Action ID="SelectCharacterGUID"
+            editable="true"/>
+  </TreeNodesModel>
+
+</root>

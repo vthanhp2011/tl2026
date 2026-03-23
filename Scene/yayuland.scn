@@ -1,0 +1,8 @@
+[System]
+navmapname=yayuland.nav
+monsterfile=yayuland_monster.ini
+patrolpoint=yayuland_patrolpoint.ini
+growpointdata=yayuland_growpoint.txt
+growpointsetup=yayuland_growpointsetup.txt
+eventfile=yayuland_area.ini
+platformfile=yayuland_platform.ini

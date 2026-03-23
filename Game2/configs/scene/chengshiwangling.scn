@@ -1,0 +1,5 @@
+[System];¾ûÌìÍõÁê
+navmapname=chengshiwangling.nav
+monsterfile=chengshiwangling_monster.ini
+patrolpoint=chengshiwangling_patrolpoint.ini
+eventfile=chengshiwangling_area.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=guhuolinggu.nav
+monsterfile=guhuolinggu_monster.ini
+patrolpoint=guhuolinggu_patrolpoint.ini
+growpointdata=guhuolinggu_growpoint.txt
+growpointsetup=guhuolinggu_growpointsetup.txt
+eventfile=guhuolinggu_area.ini
+platformfile=guhuolinggu_platform.ini

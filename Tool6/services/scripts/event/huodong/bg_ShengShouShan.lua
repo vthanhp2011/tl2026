@@ -1,0 +1,71 @@
+local class = require "class"
+local define = require "define"
+local script_base = require "script_base"
+local bg_ShengShouShan = class("bg_ShengShouShan", script_base)
+bg_ShengShouShan.script_id = 810110
+bg_ShengShouShan.g_BossData = {
+    {
+        ["ID"] = 11353,
+        ["PosX"] = 172,
+        ["PosY"] = 34,
+        ["BaseAI"] = 22,
+        ["ExtAIScript"] = 259,
+        ["ScriptID"] = 501000,
+        ["NeedCreate"] = 1
+    }
+}
+
+function bg_ShengShouShan:OnDefaultEvent(actId, iNoticeType, param2, param3, param4, param5)
+	local nTime = self:GetQuarterTime();
+    local sceneId = self:GetSceneID()
+	if nTime ~= 44 and nTime ~= 63 and nTime ~= 78 and nTime ~= 92 then
+		return
+	end
+	if sceneId ~= 158 then
+		return
+	end
+    self:StartOneActivity(actId, 180 * 1000, iNoticeType)
+    if #(self.g_BossData) < 1 then
+        return
+    end
+    for _, Data in pairs(self.g_BossData) do
+        Data["NeedCreate"] = 1
+    end
+    local nMonsterNum = self:GetMonsterCount()
+    for i = 1, nMonsterNum  do
+        local MonsterId = self:GetMonsterObjID(i)
+        local MosDataID = self:GetMonsterDataID(MonsterId)
+        self:CurSceneHaveMonster(MosDataID)
+    end
+    for _, BossData in pairs(self.g_BossData) do
+        if BossData["NeedCreate"] == 1 then
+            local MonsterID =
+                self:LuaFnCreateMonster(
+                BossData["ID"],
+                BossData["PosX"],
+                BossData["PosY"],
+                BossData["BaseAI"],
+                BossData["ExtAIScript"],
+                BossData["ScriptID"]
+            )
+            self:SetCharacterTitle(MonsterID, "千年天圣兽")
+        end
+    end
+end
+
+function bg_ShengShouShan:OnTimer(actId, uTime)
+    if not self:CheckActiviyValidity(actId) then
+        self:StopOneActivity(actId)
+    end
+end
+
+function bg_ShengShouShan:CurSceneHaveMonster(DataID)
+    for i, Data in pairs(self.g_BossData) do
+        if DataID == Data["ID"] then
+            self.g_BossData[i]["NeedCreate"] = 0
+            break
+        end
+    end
+end
+
+return bg_ShengShouShan

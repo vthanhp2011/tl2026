@@ -1,0 +1,8 @@
+[System]
+navmapname=Xbw_LTJ.nav
+monsterfile=Xbw_LTJ_monster.ini
+patrolpoint=Xbw_LTJ_patrolpoint.ini
+growpointdata=Xbw_LTJ_growpoint.txt
+growpointsetup=Xbw_LTJ_growpointsetup.txt
+eventfile=Xbw_LTJ_area.ini
+platformfile=Xbw_LTJ_platform.ini

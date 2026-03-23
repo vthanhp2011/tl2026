@@ -1,0 +1,8 @@
+[System]
+navmapname=shuiyuedongtian.nav
+monsterfile=shuiyuedongtian_monster.ini
+patrolpoint=shuiyuedongtian_patrolpoint.ini
+growpointdata=shuiyuedongtian_growpoint.txt
+growpointsetup=shuiyuedongtian_growpointsetup.txt
+eventfile=shuiyuedongtian_area.ini
+platformfile=shuiyuedongtian_platform.ini

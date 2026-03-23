@@ -1,0 +1,7 @@
+[System]
+navmapname=changchungu_wuyixiang.nav
+monsterfile=changchungu_wuyixiang_monster.ini
+patrolpoint=changchungu_wuyixiang_patrolpoint.ini
+growpointdata=changchungu_wuyixiang_growpoint.txt
+growpointsetup=changchungu_wuyixiang_growpointsetup.txt
+eventfile=changchungu_wuyixiang_area.ini

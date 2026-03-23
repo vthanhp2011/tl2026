@@ -1,0 +1,7 @@
+[System]
+navmapname=guigu.nav
+monsterfile=guigu_monster.ini
+patrolpoint=guigu_patrolpoint.ini
+eventfile=guigu_area.ini
+growpointdata=guigu_growpoint.txt
+growpointsetup=guigu_growpointsetup.txt

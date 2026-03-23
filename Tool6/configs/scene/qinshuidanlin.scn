@@ -1,0 +1,8 @@
+[System]
+navmapname=qinshuidanlin.nav
+monsterfile=qinshuidanlin_monster.ini
+patrolpoint=qinshuidanlin_patrolpoint.ini
+growpointdata=qinshuidanlin_growpoint.txt
+growpointsetup=qinshuidanlin_growpointsetup.txt
+eventfile=qinshuidanlin_area.ini
+platformfile=qinshuidanlin_platform.ini

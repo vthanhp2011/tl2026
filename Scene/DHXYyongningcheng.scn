@@ -1,0 +1,8 @@
+[System]
+navmapname=DHXYyongningcheng.nav
+monsterfile=DHXYyongningcheng_monster.ini
+patrolpoint=DHXYyongningcheng_patrolpoint.ini
+growpointdata=DHXYyongningcheng_growpoint.txt
+growpointsetup=DHXYyongningcheng_growpointsetup.txt
+eventfile=DHXYyongningcheng_area.ini
+platformfile=DHXYyongningcheng_platform.ini

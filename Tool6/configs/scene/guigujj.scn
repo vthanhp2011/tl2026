@@ -1,0 +1,7 @@
+[System]
+navmapname=guigujj.nav
+monsterfile=guigujj_monster.ini
+patrolpoint=guigujj_patrolpoint.ini
+eventfile=guigujj_area.ini
+growpointdata=guigujj_growpoint.txt
+growpointsetup=guigujj_growpointsetup.txt

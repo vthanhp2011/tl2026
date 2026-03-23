@@ -1,0 +1,8 @@
+[System]
+navmapname=mieshihuoku.nav
+monsterfile=mieshihuoku_monster.ini
+patrolpoint=mieshihuoku_patrolpoint.ini
+growpointdata=mieshihuoku_growpoint.txt
+growpointsetup=mieshihuoku_growpointsetup.txt
+eventfile=mieshihuoku_area.ini
+platformfile=mieshihuoku_platform.ini

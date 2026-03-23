@@ -1,0 +1,8 @@
+[System]
+navmapname=hanbinghaiyu.nav
+monsterfile=hanbinghaiyu_monster.ini
+patrolpoint=hanbinghaiyu_patrolpoint.ini
+growpointdata=hanbinghaiyu_growpoint.txt
+growpointsetup=hanbinghaiyu_growpointsetup.txt
+eventfile=hanbinghaiyu_area.ini
+platformfile=hanbinghaiyu_platform.ini

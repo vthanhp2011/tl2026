@@ -1,0 +1,8 @@
+[System]
+navmapname=SongliaoWar.nav
+monsterfile=SongliaoWar_monster.ini
+patrolpoint=SongliaoWar_patrolpoint.ini
+growpointdata=SongliaoWar_growpoint.txt
+growpointsetup=SongliaoWar_growpointsetup.txt
+eventfile=SongliaoWar_area.ini
+platformfile=SongliaoWar_platform.ini

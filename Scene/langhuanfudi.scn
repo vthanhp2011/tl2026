@@ -1,0 +1,8 @@
+[System]
+navmapname=langhuanfudi.nav
+monsterfile=langhuanfudi_monster.ini
+patrolpoint=langhuanfudi_patrolpoint.ini
+growpointdata=langhuanfudi_growpoint.txt
+growpointsetup=langhuanfudi_growpointsetup.txt
+eventfile=langhuanfudi_area.ini
+platformfile=langhuanfudi_platform.ini

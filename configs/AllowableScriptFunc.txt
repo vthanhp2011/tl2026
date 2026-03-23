@@ -1,0 +1,3 @@
+INT	INT	STRING
+ÐòºÅ	½Å±¾ID	º¯ÊýÃû
+0	123456	xxxxxxx

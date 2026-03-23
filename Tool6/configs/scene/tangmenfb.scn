@@ -1,0 +1,6 @@
+[System]
+navmapname=tangmenfb.nav
+monsterfile=tangmenfb_monster.ini
+patrolpoint=tangmenfb_patrolpoint.ini
+eventfile=tangmenfb_area.ini
+platformfile=tangmenfb_platform.ini

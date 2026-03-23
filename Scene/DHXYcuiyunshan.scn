@@ -1,0 +1,8 @@
+[System]
+navmapname=DHXYcuiyunshan.nav
+monsterfile=DHXYcuiyunshan_monster.ini
+patrolpoint=DHXYcuiyunshan_patrolpoint.ini
+growpointdata=DHXYcuiyunshan_growpoint.txt
+growpointsetup=DHXYcuiyunshan_growpointsetup.txt
+eventfile=DHXYcuiyunshan_area.ini
+platformfile=DHXYcuiyunshan_platform.ini

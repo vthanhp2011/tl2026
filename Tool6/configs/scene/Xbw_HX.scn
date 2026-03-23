@@ -1,0 +1,8 @@
+[System]
+navmapname=Xbw_HX.nav
+monsterfile=Xbw_HX_monster.ini
+patrolpoint=Xbw_HX_patrolpoint.ini
+growpointdata=Xbw_HX_growpoint.txt
+growpointsetup=Xbw_HX_growpointsetup.txt
+eventfile=Xbw_HX_area.ini
+platformfile=Xbw_HX_platform.ini

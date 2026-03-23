@@ -1,0 +1,5 @@
+[System]
+navmapname=Xbw_HXJ_XiuXi.nav
+monsterfile=Xbw_HXJ_XiuXi_monster.ini
+patrolpoint=Xbw_HXJ_XiuXi_patrolpoint.ini
+eventfile=Xbw_HXJ_XiuXi_area.ini
