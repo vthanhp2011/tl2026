@@ -5,7 +5,20 @@ CSERVICE_PATH ?= cservice
 
 SKYNET_BUILD_PATH ?= .
 
-CFLAGS = -g -O2 -Wall -I$(LUA_INC) $(MYCFLAGS)
+#CFLAGS = -g -O2 -Wall -I$(LUA_INC) $(MYCFLAGS)
+CFLAGS = -g -O2 -Wall \
+         -Wno-deprecated-declarations \
+         -Wno-array-bounds \
+         -Wno-stringop-overread \
+         -Wno-maybe-uninitialized \
+         -Wno-array-parameter \
+         -Wno-write-strings \
+         -Wno-return-type \
+         -Wno-format-overflow \
+         -Wno-tautological-compare \
+         -Wno-unused-variable \
+         -Wno-parentheses \
+         -I$(LUA_INC) $(MYCFLAGS)
 # CFLAGS += -DUSE_PTHREAD_LOCK
 
 # lua
