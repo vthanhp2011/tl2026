@@ -5,6 +5,7 @@ echo "=== BẮT ĐẦU BUILD & RUN tl2026 ==="
 
 # Build tất cả 3 node (Game2, Span4, Tool6)
 for dir in Game2 Span4 Tool6; do
+#for dir in Game2; do
     echo "Building $dir..."
     cd "$dir"
     make clean || true
