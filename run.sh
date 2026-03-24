@@ -18,12 +18,12 @@ echo "=== BUILD XONG ==="
 
 # Game2 - Manager node
 cd /home/tlbb_spug/Game2
-./r.sh debug 2 Manager
+./r.sh debug 2 Game
 sleep 3
 
 # Span4 - Scene node
 cd /home/tlbb_spug/Span4
-./r.sh debug 4 Game
+./r.sh debug 4 Span
 sleep 3
 
 # Tool6 - Tool node

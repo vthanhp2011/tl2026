@@ -1,13 +1,16 @@
 return {
     ["host_conf"] =
     {
-        {id = 1, localip = "127.0.0.1", ip = "192.168.1.250", domain ="1.1.1.1", desc = "测试环境", netid = 1},
+        {id = 1, localip = "127.0.0.1", ip = "127.0.0.1", domain ="1.1.1.1", desc = "测试环境", netid = 1},
     },
     ["process_conf"] =
     {
+        { id = 8, hostid = 1, desc = "集群服务", group = {2,3}, name = "Cluster_tlbb_8"},
+        { id = 9, hostid = 1, desc = "数据服务", group = {2,3}, name = "DataCenter_tlbb_8"},
         { id = 2, hostid = 1, desc = "游戏服务-2", group = {2}, name = "Game_tlbb_2"},
-        { id = 4, hostid = 1, desc = "天外服务-4", group = {2}, name = "Span_tlbb_4"},
-        { id = 6, hostid = 1, desc = "工具服务-6", group = {2}, name = "Tool_tlbb_6"},
+	{ id = 3, hostid = 1, desc = "游戏服务-3", group = {3}, name = "Game_tlbb_3"},
+        { id = 4, hostid = 1, desc = "天外服务-4", group = {2,3}, name = "Span_tlbb_4"},
+        { id = 6, hostid = 1, desc = "工具服务-6", group = {2,3}, name = "Tool_tlbb_6"},
     },
     ["server_conf"] =
     {

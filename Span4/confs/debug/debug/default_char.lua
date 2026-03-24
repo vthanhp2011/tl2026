@@ -115,7 +115,7 @@ local char = {
     sold_out_list = {},
     xinfa_list = {},
     mission_data = { char_missions = {}, mission_have_done_flags = {}, mission_datas = {} },
-    relation = { friends = {}, black = {}, enemies = {}, temp = {}, mood = "Tôi vçn chßa quyªt ð¸nh."}
+    relation = { friends = {}, black = {}, enemies = {}, temp = {}, mood = "还没想好哦"}
 }
 
 for i = 1, define.MAX_CHAR_MISSION_FLAG_LEN do

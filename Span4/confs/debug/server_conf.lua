@@ -1,26 +1,26 @@
 local server_conf = {}
-server_conf.server_ip = "1.1.1.1"
+server_conf.server_ip = "192.168.1.250"
 server_conf.gamedb = {
-    host = "127.0.0.1",
-    port = 27017,
+    host = "10.1.1.99",
+    port = 3306,
     db_name = "admin",
-    username = "root",
-    password = "123456"
+    username = "tlbbus",
+    password = "vietnam2020"
 }
 
 server_conf.logdb = {
-    host = "127.0.0.1",
-    port = 27017,
+    host = "10.1.1.99",
+    port = 3306,
     db_name = "admin",
-    username = "root",
-    password = "123456"
+    username = "tlbbus",
+    password = "vietnam2020"
 }
 server_conf.mysqldb = {
-    host = "127.0.0.1",
+    host = "10.1.1.99",
     port = 3306,
-    database = "dl",
-    user = "test",
-    password ="test"
+    database = "tlbb",
+    user = "tlbbus",
+    password ="vietnam2020"
 }
 
 server_conf.gm_tool_mqtt = {
