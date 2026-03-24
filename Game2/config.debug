@@ -1,6 +1,7 @@
-    env = "local"
+    env = "debug"
+    script_root = "/home/tlbb_spug/Script"
     include "config.path"
-    thread = 8
+    thread = 64
     harbor = 0
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
@@ -8,15 +9,16 @@
     enablecipher = true
     loglevel = 0
     process_id = 2
-    scene_config_env = "configs/scene"
+    scene_config_env = "/home/tlbb_spug/Scene"
+    sensitive_words_path = "./sensitive_words.txt"
     --本地调试打开下面2个,注释vscode调试相关参数
-    --daemon = "./skynet_2.pid"
-    --logger = "Game2"
-    --logpath = "./log"
+	daemon = nil
+	logger = nil
+    logpath = "../log"
     svrtype = "Game"
     __nowaiting = true
 
     --vscode 调试打开下面2个,注释daemon 和 logger
-    vscdbg_open = "$vscdbg_open"
-    vscdbg_workdir = "$vscdbg_workdir"
+    --vscdbg_open = "$vscdbg_open"
+    --vscdbg_workdir = "$vscdbg_workdir"
 
