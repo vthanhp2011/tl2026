@@ -5,3 +5,4 @@ spawn nc 127.0.0.1 $port
 send "call .logind \"close\"\n"
 send "call .gamed \"close\"\n"
 expect off
+exec sleep 20
