@@ -1,9 +1,9 @@
-local env          = arg[1] or "publish_xrx"
+local env          = arg[1] or "debug"
 local script_root  = arg[2] or "/home/tlbb_spug/Script"
 local processid    = tonumber(arg[3]) or 4
 local svrtype      = arg[4] or "Span4"
 local scene_config = arg[5] or "/home/tlbb_spug/Scene"
-local loglevel 	   = "0"
+local loglevel 	   = "1"
 local config = string.format([[
     env = "%s"
     script_root = "%s"

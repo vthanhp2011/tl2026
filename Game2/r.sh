@@ -1,17 +1,17 @@
 #!/bin/bash
-env=${1:-publish_xrx}
+env=${1:-debug}
 processid=${2:-2}
-svrtype=${3:-Manager}
+svrtype=${3:-Game}
 
 if  [ ! -n "$svrtype" ] ;then
     svrtype="Game"
 fi
-if [ "$svrtype" = "Game" ]; then
+if [ "$svrtype" != "Game" ]; then
 script_root=/home/tlbb_spug/${svrtype}_${processid}/Script
 scene_config=/home/tlbb_spug/${svrtype}_${processid}/Scene
 else
-script_root=/home/tlbb_spug/Game_2/Script
-scene_config=/home/tlbb_spug/Game_2/Scene
+script_root=/home/tlbb_spug/Script
+scene_config=/home/tlbb_spug/Scene
 fi
 port=$((6000 + processid))
 TCPListeningnum=`netstat -an | egrep ":${port}" | awk '$1 == "tcp" && $NF == "LISTEN" {print $0}' |wc -l`
@@ -43,5 +43,6 @@ sleep 10s
 lua config_maker.lua "$env" "$script_root" $processid "$svrtype" "$scene_config" > config
 ulimit -c unlimited
 
-./framework/$exec_target config
+./framework/$exec_target config 2>&1 | tee -a ../log/"$svrtype""$processid"_debug.log
+#./framework/$exec_target config
 echo "start server ok in env = $env, processid = $processid"
