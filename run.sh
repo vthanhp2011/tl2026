@@ -15,20 +15,20 @@ done
 echo "=== BUILD XONG ==="
 
 # Chạy 3 node (background)
-cd /home/tlbb_spug
 
 # Game2 - Manager node
-cd Game2 && ./r.sh publish_xrx 2 Manager &
-
+cd /home/tlbb_spug/Game2
+./r.sh publish_xrx 2 Manager &
 sleep 3
 
 # Span4 - Scene node
-cd ../Span4 && ./r.sh publish_xrx 4 Game &
-
+cd /home/tlbb_spug/Span4
+./r.sh publish_xrx 4 Game &
 sleep 3
 
 # Tool6 - Tool node
-cd ../Tool6 && ./r.sh publish_xrx 6 Tool &
+cd /home/tlbb_spug/Tool6
+./r.sh publish_xrx 6 Tool &
 
 echo "=== SERVER ĐANG CHẠY ==="
 echo "Game2 (node 2) - Span4 (node 4) - Tool6 (node 6)"
