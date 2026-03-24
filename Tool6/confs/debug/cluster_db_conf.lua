@@ -1,7 +1,7 @@
 return {
     ["host_conf"] =
     {
-        {id = 1, localip = "127.0.0.1", ip = "192.168.1.250", domain ="1.1.1.1", desc = "测试环境", netid = 1},
+        {id = 1, localip = "127.0.0.1", ip = "192.168.1.250", domain ="192.168.1.250", desc = "测试环境", netid = 1},
     },
     ["process_conf"] =
     {
