@@ -24,14 +24,22 @@ skynet.start(function()
 		end
 		skynet.name(".cslave", slave)
 
-	else
+    else  -- harbor ~= 0
+        skynet.error("=== LAUNCH CMASTER OK ===")
+        local master_srv = skynet.newservice("cmaster")
+
+        -- === THÊM ĐOẠN NÀY ===
+        skynet.error("=== BẮT ĐẦU LAUNCH CSLAVE ===")
+        local slave = skynet.newservice("cslave", skynet.getenv("master"))
+        skynet.error("=== CSLAVE LAUNCHED SUCCESSFULLY ===")
+        -- ======================
+
+        skynet.error("=== LAUNCH HARBOR SERVICE ===")
+        -- harbor C service sẽ được launch tự động qua cslave hoặc bạn có thể thêm thủ công nếu cần
+		
 		if standalone then
 			if not pcall(skynet.newservice,"cmaster") then
-local master = skynet.newservice "cmaster"
-skynet.error("=== CMASTER LAUNCHED SUCCESSFULLY, NOW LAUNCH CSLAVE ===")
 
-local slave = skynet.newservice("cslave", skynet.getenv("master") or "")
-skynet.error("=== CSLAVE LAUNCHED ===")
 				skynet.abort()
 			end
 		end
