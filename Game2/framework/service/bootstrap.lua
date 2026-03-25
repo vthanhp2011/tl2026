@@ -8,11 +8,13 @@ skynet.start(function()
 
 	local launcher = assert(skynet.launch("snlua","launcher"))
 	skynet.name(".launcher", launcher)
-
+	
+skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) ..
+             ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
 	local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 	if harbor_id == 0 then
 		assert(standalone ==  nil)
-		standalone = true
+		standalone = nil
 		skynet.setenv("standalone", "true")
 		print("=== harbor_id = 0 ===")
 
@@ -26,16 +28,22 @@ skynet.start(function()
 
     else  -- harbor ~= 0
         skynet.error("=== LAUNCH CMASTER OK ===")
-        local master_srv = skynet.newservice("cmaster")
-
-        -- === THÊM ĐOẠN NÀY ===
+        
+        -- Fork để cmaster không block bootstrap
+        skynet.fork(function()
+            local master = skynet.newservice("cmaster")
+            skynet.error("=== CMASTER SERVICE STARTED IN FORK ===")
+        end)
+        
+        skynet.sleep(100)  -- chờ cmaster listen (khoảng 1 giây)
+        
         skynet.error("=== BẮT ĐẦU LAUNCH CSLAVE ===")
-        local slave = skynet.newservice("cslave", skynet.getenv("master"))
-        skynet.error("=== CSLAVE LAUNCHED SUCCESSFULLY ===")
-        -- ======================
-
-        skynet.error("=== LAUNCH HARBOR SERVICE ===")
-        -- harbor C service sẽ được launch tự động qua cslave hoặc bạn có thể thêm thủ công nếu cần
+        local slave_ok, slave = pcall(skynet.newservice, "cslave", skynet.getenv("master"))
+        if slave_ok then
+            skynet.error("=== CSLAVE LAUNCHED SUCCESSFULLY ===")
+        else
+            skynet.error("=== CSLAVE FAILED: " .. tostring(slave) .. " ===")
+        end
 		
 		if standalone then
 			if not pcall(skynet.newservice,"cmaster") then
