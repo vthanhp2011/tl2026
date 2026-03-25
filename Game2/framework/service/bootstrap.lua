@@ -8,7 +8,7 @@ skynet.start(function()
 
     local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 
-    -- Launcher + register (theo yêu cầu của bạn)
+    -- Launcher + register (theo yêu cầu)
     local launcher = assert(skynet.launch("snlua","launcher"))
     skynet.name(".launcher", launcher)
 
@@ -34,16 +34,8 @@ skynet.start(function()
         local mgr = assert(skynet.launch("snlua", "service_mgr"))
         skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
 
-        -- datacenterd với try-catch
-        skynet.error("=== LAUNCH DATACENTERD ===")
-        local ok, dc = pcall(skynet.newservice, "datacenterd")
-        if ok then
-            skynet.name(".datacenterd", dc)
-            skynet.error("=== DATACENTERD LAUNCHED SUCCESSFULLY ===")
-        else
-            skynet.error("=== DATACENTERD FAILED (bỏ qua): " .. tostring(dc))
-            -- Không abort, tiếp tục vì harbor=0 có thể không cần datacenterd
-        end
+        -- BỎ DATACENTERD khi harbor=0 (single node)
+        skynet.error("=== BỎ QUA DATACENTERD (single node harbor=0) ===")
 
         skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
 
@@ -51,13 +43,13 @@ skynet.start(function()
         skynet.error("=== HARBOR != 0 not supported yet ===")
     end
 
-    -- Launch main bằng direct + delay để main chạy trước khi bootstrap exit
+    -- Launch main bằng direct launch + delay
     local start_name = skynet.getenv("start") or "main"
     skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
     local main_srv = assert(skynet.launch("snlua", start_name))
     skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
 
-    skynet.sleep(100)   -- chờ main khởi tạo một chút
+    skynet.sleep(200)   -- chờ main khởi tạo
     skynet.exit()
 end)
 

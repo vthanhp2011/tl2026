@@ -16,12 +16,16 @@ end
 skynet.start(function()
 	local process_id = tonumber(skynet.getenv "process_id")
 	local svrtype = skynet.getenv("svrtype")
+	
+print("=== MAIN.LUA ĐANG ĐƯỢC LOAD /home/tlbb_spug/Game2 ===")
+skynet.error("=== MAIN.LUA STARTED - svrtype = " .. tostring(skynet.getenv("svrtype")))
+
 	if svrtype == "Game" then
 		init_manager_server(process_id)
 	else
 		init_common_server(process_id)
 	end
-	--skynet.exit()
+	skynet.exit()
 end)
 
 --[[
