@@ -2,6 +2,7 @@ local skynet = require "skynet"
 local harbor = require "skynet.harbor"
 local service = require "skynet.service"
 require "skynet.manager"	-- import skynet.launch, ...
+skynet.error("=== LUASERVICE PATH: " .. (skynet.getenv("luaservice") or "NIL") .. " ===")
 
 skynet.start(function()
     skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
