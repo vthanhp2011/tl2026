@@ -16,11 +16,11 @@ skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor
         assert(standalone == nil)
         standalone = nil
         skynet.setenv("standalone", "true")
-        print("=== harbor_id = 0 ===")
 
+        print("=== harbor_id = 0 ===")
         skynet.error("=== BẮT ĐẦU LAUNCH CDUMMY (fork để tránh hang) ===")
-        
-        -- Dùng fork + sleep để bỏ blocking pcall
+
+        -- Fork cdummy + harbor
         local slave
         skynet.fork(function()
             local ok, s = pcall(skynet.newservice, "cdummy")
@@ -33,23 +33,26 @@ skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor
             skynet.error("=== CDUMMY LAUNCHED SUCCESSFULLY IN FORK ===")
         end)
 
-        skynet.sleep(200)   -- chờ 2 giây cho cdummy + harbor khởi tạo xong
+        skynet.sleep(300)  -- chờ 3 giây cho harbor ổn định
 
-        skynet.error("=== CDUMMY OK, tiếp tục launch datacenterd ===")
+        skynet.error("=== CDUMMY OK, tiếp tục launch service_mgr ===")
 
-        -- Launch service_mgr TRƯỚC TIÊN (rất quan trọng)
-skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct launch) ===")
-local mgr = assert(skynet.launch("snlua", "service_mgr"))
-skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
--- =====================================================================
-        -- Sau đó mới launch datacenterd (nếu có)
+        -- === LAUNCH SERVICE_MGR BẰNG DIRECT LAUNCH (quan trọng nhất) ===
+        skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct) ===")
+        local mgr = assert(skynet.launch("snlua", "service_mgr"))
+        skynet.name(".service", mgr)        -- ← ĐĂNG KÝ .service NGAY TẠI ĐÂY
+        skynet.error("=== SERVICE_MGR LAUNCHED & REGISTERED .service ===")
+        -- =================================================================
+
+        -- Launch datacenterd nếu cần
         if standalone then
             skynet.error("=== LAUNCH DATACENTERD ===")
             local dc = skynet.newservice "datacenterd"
             skynet.name(".datacenterd", dc)
         end
 
-        -- Các service khác nếu có
+        skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
+
     else  -- harbor ~= 0
         skynet.error("=== LAUNCH CMASTER OK ===")
         
