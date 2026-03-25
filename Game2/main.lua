@@ -1,6 +1,8 @@
 local skynet = require "skynet"
 require "skynet.manager"
 
+skynet.error("=== MAIN.LUA STARTED - svrtype = " .. tostring(skynet.getenv("svrtype")))
+
 local function init_manager_server(processid)
 	skynet.name(".cluster_db_mgr", skynet.newservice("cluster_db_mgr"))
 	skynet.name(".cluster_mgr", skynet.newservice("cluster_mgr", processid))
@@ -14,18 +16,31 @@ local function init_common_server(processid)
 end
 
 skynet.start(function()
+
+	skynet.error("=== MAIN.LUA skynet.start() BẮT ĐẦU ===")
+-- Thêm try-catch quanh toàn bộ code gốc của main.lua
+    local ok, err = pcall(function()
+        print("=== MAIN.LUA: Đang launch các service cluster... ===")
 	local process_id = tonumber(skynet.getenv "process_id")
 	local svrtype = skynet.getenv("svrtype")
-	
-print("=== MAIN.LUA ĐANG ĐƯỢC LOAD /home/tlbb_spug/Game2 ===")
-skynet.error("=== MAIN.LUA STARTED - svrtype = " .. tostring(skynet.getenv("svrtype")))
 
 	if svrtype == "Game" then
 		init_manager_server(process_id)
 	else
 		init_common_server(process_id)
 	end
-	skynet.exit()
+	
+	skynet.error("=== MAIN.LUA: TẤT CẢ SERVICE ĐÃ LAUNCH XONG ===")
+    end)
+
+    if not ok then
+        skynet.error("=== MAIN.LUA CRASH: " .. tostring(err))
+        skynet.error(debug.traceback())
+    end
+
+    skynet.error("=== MAIN.LUA HOÀN TẤT skynet.start() ===")
+    -- skynet.exit()   -- comment tạm nếu có
+
 end)
 
 --[[
