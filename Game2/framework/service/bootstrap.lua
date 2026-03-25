@@ -6,16 +6,12 @@ skynet.error("=== LUASERVICE PATH: " .. (skynet.getenv("luaservice") or "NIL") .
 
 
 skynet.start(function()
-    -- ================== THÊM PACKAGE.PATH THỦ CÔNG (đủ rồi) ==================
-    package.path = "./?.lua;./framework/service/?.lua;./services/?.lua;./?.lua;" .. (package.path or "")
+-- Thêm package.path để bao quát root và các thư mục service
+    package.path = "./?.lua;./services/?.lua;./cluster/?.lua;./framework/service/?.lua;./framework/lualib/?.lua;./lualib/?.lua;" .. package.path
 
-    skynet.error("=== PACKAGE.PATH ĐÃ ĐƯỢC THÊM THỦ CÔNG ===")
-    skynet.error("Current package.path = " .. package.path)
-    -- =========================================================================
-
-    skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. 
-                 ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
-				 
+    print("=== PACKAGE.PATH ĐÃ ĐƯỢC THÊM THỦ CÔNG ===")
+    print("Current package.path = " .. package.path)
+	
 	local standalone = skynet.getenv "standalone"
     local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 
