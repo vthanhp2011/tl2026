@@ -15,16 +15,16 @@ master      = nil
 address     = nil
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
-    enablessl = false
-    enablecipher = false
+    enablessl = false --Tắt tạm SSL/Cipher
+    enablecipher = false --Tắt tạm SSL/Cipher
     loglevel = %s
     process_id = %d
     scene_config_env = "%s"
     sensitive_words_path = "./sensitive_words.txt"
     --本地调试打开下面2个,注释vscode调试相关参数
-    daemon = nil--"./skynet_%d.pid"
-    logger = nil--"%s%d"
-    logpath = nil--"../log"
+    daemon = nil		--"./skynet_%d.pid"
+    logger = nil		--"%s%d"
+    logpath = nil		--"../log"
     svrtype = "%s"
     __nowaiting = true
 
