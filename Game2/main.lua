@@ -4,10 +4,15 @@ require "skynet.manager"
 skynet.error("=== MAIN.LUA STARTED - svrtype = " .. tostring(skynet.getenv("svrtype")))
 
 local function init_manager_server(processid)
+	skynet.error("=== init_manager_server bắt đầu ===")
+	
 	skynet.name(".cluster_db_mgr", skynet.newservice("cluster_db_mgr"))
 	skynet.name(".cluster_mgr", skynet.newservice("cluster_mgr", processid))
 	skynet.name(".CfgDB", skynet.newservice("cfgdb"))
 	skynet.send(".CfgDB", "lua", "init")
+	
+	skynet.error("=== init_manager_server ĐÃ XONG ===")
+
 end
 
 local function init_common_server(processid)
@@ -39,8 +44,7 @@ skynet.start(function()
     end
 
     skynet.error("=== MAIN.LUA HOÀN TẤT skynet.start() ===")
-    -- skynet.exit()   -- comment tạm nếu có
-
+	skynet.sleep(0)     -- sleep vô hạn = giữ process sống
 end)
 
 --[[

@@ -49,8 +49,8 @@ skynet.start(function()
     local main_srv = assert(skynet.launch("snlua", start_name))
     skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
 
-    skynet.sleep(200)   -- chờ main khởi tạo
-    skynet.exit()
+	skynet.sleep(0)     -- sleep vô hạn = giữ process sống
+    --skynet.exit()
 end)
 
 
