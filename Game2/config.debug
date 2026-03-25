@@ -2,7 +2,7 @@
     script_root = "/home/tlbb_spug/Script"
     include "config.path"
     thread = 64
-harbor      = 2                    -- giữ nguyên nếu process_id của bạn là 2
+harbor      = 1                    -- giữ nguyên nếu process_id của bạn là 2
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
     enablessl = true
@@ -17,10 +17,10 @@ harbor      = 2                    -- giữ nguyên nếu process_id của bạn
     logpath = "../log"
     svrtype = "Game"
     __nowaiting = true
+standalone = true          -- hoặc nil cũng được
 master      = "127.0.0.1:2013"     -- địa chỉ master (cslave sẽ connect đến)
 standalone  = "0.0.0.0:2013"       -- ← QUAN TRỌNG: địa chỉ LISTEN của cmaster (dùng 0.0.0.0 để nhận mọi interface)
 address     = "127.0.0.1:2526"     -- ← địa chỉ listen của cslave trên node này (phải khác port với master)
-
     --vscode 调试打开下面2个,注释daemon 和 logger
     --vscdbg_open = "$vscdbg_open"
     --vscdbg_workdir = "$vscdbg_workdir"
