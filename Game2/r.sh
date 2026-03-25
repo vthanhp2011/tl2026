@@ -40,9 +40,10 @@ done
 cp ./framework/skynet ./framework/$exec_target
 chmod +x ./framework/$exec_target
 sleep 10s
-lua config_maker.lua "$env" "$script_root" $processid "$svrtype" "$scene_config" > config
+lua config_maker.lua "$env" "$script_root" $processid "$svrtype" "$scene_config" > config.debug
 ulimit -c unlimited
 
-./framework/$exec_target config 2>&1 | tee -a ../log/"$svrtype""$processid"_debug.log
+./framework/$exec_target config.debug
+#./framework/$exec_target config.debug 2>&1 | tee -a ../log/"$svrtype""$processid"_debug.log
 #./framework/$exec_target config
-echo "start server ok in env = $env, processid = $processid"
+#echo "start server ok in env = $env, processid = $processid"
