@@ -38,11 +38,10 @@ skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor
         skynet.error("=== CDUMMY OK, tiếp tục launch datacenterd ===")
 
         -- Launch service_mgr TRƯỚC TIÊN (rất quan trọng)
-        skynet.error("=== LAUNCH SERVICE_MGR ===")
-        local mgr = skynet.newservice "service_mgr"
-        skynet.name(".service", mgr)        -- register tên .service ngay lập tức
-        skynet.error("=== SERVICE_MGR LAUNCHED OK ===")
-
+skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct launch) ===")
+local mgr = assert(skynet.launch("snlua", "service_mgr"))
+skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
+-- =====================================================================
         -- Sau đó mới launch datacenterd (nếu có)
         if standalone then
             skynet.error("=== LAUNCH DATACENTERD ===")
