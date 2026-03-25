@@ -6,11 +6,7 @@ local wait_queue = {}
 local mode = {}
 
 local function query(db, key, ...)
-    if key == nil then
-        return db
-    else
-        return query(db[key], ...)
-    end
+    if key == nil then return db else return query(db[key], ...) end
 end
 
 local function update(db, key, value, ...)
@@ -30,9 +26,7 @@ local function wakeup(db, key1, ...)
     if q == nil then return end
     if q[mode] == "queue" then
         db[key1] = nil
-        for _, response in ipairs(q) do
-            response(true)
-        end
+        for _, response in ipairs(q) do response(true) end
     else
         return wakeup(q, ...)
     end
@@ -53,9 +47,7 @@ skynet.start(function()
             else
                 local q = wakeup(wait_queue, ...)
                 if q then
-                    for _, response in ipairs(q) do
-                        response(true, value)
-                    end
+                    for _, response in ipairs(q) do response(true, value) end
                 end
                 skynet.ret(skynet.pack(true))
             end

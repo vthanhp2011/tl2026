@@ -1,0 +1,27 @@
+    env = "debug"
+    script_root = "/home/tlbb_spug/Script"
+    include "config.path"
+    thread = 64
+    harbor = 0
+    standalone  = nil          -- hoặc để trống, không set = true
+    master      = nil
+    address     = nil
+    start = "main" -- main script
+    bootstrap = "snlua bootstrap"	-- The service for bootstrap
+    enablessl = false --Tắt tạm SSL/Cipher
+    enablecipher = false --Tắt tạm SSL/Cipher
+    loglevel = 1
+    process_id = 2
+    scene_config_env = "/home/tlbb_spug/Scene"
+    sensitive_words_path = "./sensitive_words.txt"
+    --Kích hoạt hai tùy chọn sau để gỡ lỗi cục bộ và vô hiệu hóa các tham số gỡ lỗi của VS Code bằng cách thêm dấu chú thích.
+    daemon = nil		--"./skynet_2.pid"
+    logger = nil		--"Game2"
+    logpath = nil		--"../log"
+    svrtype = "Game"
+    __nowaiting = true
+
+    --Trong VS Code, hãy bật hai trình gỡ lỗi sau và vô hiệu hóa dòng lệnh "daemon" và "logger".
+    --vscdbg_open = "$vscdbg_open"
+    --vscdbg_workdir = "$vscdbg_workdir"
+

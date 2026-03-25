@@ -6,7 +6,6 @@ skynet.start(function()
     skynet.error(string.format("=== cluster_mgr STARTED (process_id = %d) ===", processid))
     skynet.name(".cluster_mgr", skynet.self())
 
-    -- Lưu danh sách node (có thể mở rộng sau)
     local nodes = {}
 
     skynet.dispatch("lua", function(_, _, cmd, ...)

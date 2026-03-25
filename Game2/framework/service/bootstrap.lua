@@ -4,9 +4,18 @@ local service = require "skynet.service"
 require "skynet.manager"	-- import skynet.launch, ...
 skynet.error("=== LUASERVICE PATH: " .. (skynet.getenv("luaservice") or "NIL") .. " ===")
 
+
 skynet.start(function()
-    skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
-	
+    -- ================== THÊM PACKAGE.PATH THỦ CÔNG (đủ rồi) ==================
+    package.path = "./?.lua;./framework/service/?.lua;./services/?.lua;./?.lua;" .. (package.path or "")
+
+    skynet.error("=== PACKAGE.PATH ĐÃ ĐƯỢC THÊM THỦ CÔNG ===")
+    skynet.error("Current package.path = " .. package.path)
+    -- =========================================================================
+
+    skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. 
+                 ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
+				 
 	local standalone = skynet.getenv "standalone"
     local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 

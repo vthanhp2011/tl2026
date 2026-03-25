@@ -7,9 +7,8 @@ skynet.start(function()
     skynet.error("=== cfgdb STARTED ===")
     skynet.name(".CfgDB", skynet.self())
 
-    -- Load config từ scene_config_env (nếu có)
     local env = skynet.getenv("scene_config_env") or "./confs/debug"
-    local ok, conf = pcall(require, "cluster_db_conf")  -- load file confs/debug/cluster_db_conf.lua
+    local ok, conf = pcall(require, "cluster_db_conf")
     if ok then
         config_data = conf or {}
         skynet.error("✅ cfgdb loaded cluster_db_conf.lua")
