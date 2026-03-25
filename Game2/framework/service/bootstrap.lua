@@ -14,8 +14,11 @@ skynet.start(function()
 		assert(standalone ==  nil)
 		standalone = true
 		skynet.setenv("standalone", "true")
+		print("=== harbor_id = 0 ===")
 
 		local ok, slave = pcall(skynet.newservice, "cdummy")
+		print("=== CDUMMY OK, tiếp tục launch datacenterd ===")
+		
 		if not ok then
 			skynet.abort()
 		end
@@ -24,6 +27,11 @@ skynet.start(function()
 	else
 		if standalone then
 			if not pcall(skynet.newservice,"cmaster") then
+local master = skynet.newservice "cmaster"
+skynet.error("=== CMASTER LAUNCHED SUCCESSFULLY, NOW LAUNCH CSLAVE ===")
+
+local slave = skynet.newservice("cslave", skynet.getenv("master") or "")
+skynet.error("=== CSLAVE LAUNCHED ===")
 				skynet.abort()
 			end
 		end
