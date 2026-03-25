@@ -66,6 +66,15 @@ function harbor.CONNECT(id)
 end
 
 skynet.start(function()
+    local harbor_id = tonumber(skynet.getenv "harbor")
+    assert(harbor_id == 0)
+
+    skynet.error("=== CDUMMY: BẮT ĐẦU LAUNCH HARBOR ===")
+    harbor_service = assert(skynet.launch("harbor", harbor_id, skynet.self()))
+    skynet.error("=== CDUMMY: HARBOR LAUNCHED SUCCESSFULLY ===")  -- ← nếu thấy dòng này thì OK
+end)
+--[[
+skynet.start(function()
 	local harbor_id = tonumber(skynet.getenv "harbor")
 	assert(harbor_id == 0)
 
@@ -79,3 +88,4 @@ skynet.start(function()
 
 	harbor_service = assert(skynet.launch("harbor", harbor_id, skynet.self()))
 end)
+]]

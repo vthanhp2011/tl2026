@@ -12,20 +12,45 @@ skynet.start(function()
 skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) ..
              ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
 	local harbor_id = tonumber(skynet.getenv "harbor" or 0)
-	if harbor_id == 0 then
-		assert(standalone ==  nil)
-		standalone = nil
-		skynet.setenv("standalone", "true")
-		print("=== harbor_id = 0 ===")
+    if harbor_id == 0 then
+        assert(standalone == nil)
+        standalone = nil
+        skynet.setenv("standalone", "true")
+        print("=== harbor_id = 0 ===")
 
-		local ok, slave = pcall(skynet.newservice, "cdummy")
-		print("=== CDUMMY OK, tiếp tục launch datacenterd ===")
-		
-		if not ok then
-			skynet.abort()
-		end
-		skynet.name(".cslave", slave)
+        skynet.error("=== BẮT ĐẦU LAUNCH CDUMMY (fork để tránh hang) ===")
+        
+        -- Dùng fork + sleep để bỏ blocking pcall
+        local slave
+        skynet.fork(function()
+            local ok, s = pcall(skynet.newservice, "cdummy")
+            if not ok then
+                skynet.error("=== CDUMMY FAILED: " .. tostring(s))
+                skynet.abort()
+            end
+            slave = s
+            skynet.name(".cslave", slave)
+            skynet.error("=== CDUMMY LAUNCHED SUCCESSFULLY IN FORK ===")
+        end)
 
+        skynet.sleep(200)   -- chờ 2 giây cho cdummy + harbor khởi tạo xong
+
+        skynet.error("=== CDUMMY OK, tiếp tục launch datacenterd ===")
+
+        -- Launch service_mgr TRƯỚC TIÊN (rất quan trọng)
+        skynet.error("=== LAUNCH SERVICE_MGR ===")
+        local mgr = skynet.newservice "service_mgr"
+        skynet.name(".service", mgr)        -- register tên .service ngay lập tức
+        skynet.error("=== SERVICE_MGR LAUNCHED OK ===")
+
+        -- Sau đó mới launch datacenterd (nếu có)
+        if standalone then
+            skynet.error("=== LAUNCH DATACENTERD ===")
+            local dc = skynet.newservice "datacenterd"
+            skynet.name(".datacenterd", dc)
+        end
+
+        -- Các service khác nếu có
     else  -- harbor ~= 0
         skynet.error("=== LAUNCH CMASTER OK ===")
         
