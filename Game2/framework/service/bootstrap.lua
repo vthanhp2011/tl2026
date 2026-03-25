@@ -4,77 +4,78 @@ local service = require "skynet.service"
 require "skynet.manager"	-- import skynet.launch, ...
 
 skynet.start(function()
+    skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. 
+                 ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
+
+    local harbor_id = tonumber(skynet.getenv "harbor" or 0)
+    local standalone = skynet.getenv "standalone"
+	local launcher = assert(skynet.launch("snlua","launcher"))
+	skynet.name(".launcher", launcher)
+
+    if harbor_id == 0 then
+        print("=== harbor_id = 0 ===")
+        skynet.setenv("standalone", "true")
+
+        -- Launch cdummy + harbor bằng fork
+        skynet.fork(function()
+            local ok, s = pcall(skynet.newservice, "cdummy")
+            if not ok then
+                skynet.error("CDUMMY FAILED: " .. tostring(s))
+                skynet.abort()
+            end
+            skynet.name(".cslave", s)
+        end)
+
+        skynet.sleep(300)
+
+        -- Launch service_mgr bằng direct launch
+        skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct) ===")
+        local mgr = assert(skynet.launch("snlua", "service_mgr"))
+        -- KHÔNG gọi skynet.name(".service", mgr) nữa, để service_mgr tự register
+        skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
+
+        -- datacenterd
+        skynet.error("=== LAUNCH DATACENTERD ===")
+        local dc = skynet.newservice "datacenterd"
+        skynet.name(".datacenterd", dc)
+
+    else
+        skynet.error("=== HARBOR != 0 not fully supported yet ===")
+    end
+
+    skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
+
+    -- Launch main.lua BẰNG DIRECT LAUNCH (bypass uniqueservice)
+    local start_name = skynet.getenv("start") or "main"
+    skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
+    local main_srv = assert(skynet.launch("snlua", start_name))
+    skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
+
+    skynet.exit()
+end)
+
+--[[
+skynet.start(function()
 	local standalone = skynet.getenv "standalone"
 
 	local launcher = assert(skynet.launch("snlua","launcher"))
 	skynet.name(".launcher", launcher)
-	
-skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) ..
-             ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
+
 	local harbor_id = tonumber(skynet.getenv "harbor" or 0)
-    if harbor_id == 0 then
-        assert(standalone == nil)
-        standalone = nil
-        skynet.setenv("standalone", "true")
+	if harbor_id == 0 then
+		assert(standalone ==  nil)
+		standalone = true
+		skynet.setenv("standalone", "true")
 
-        print("=== harbor_id = 0 ===")
-        skynet.error("=== BẮT ĐẦU LAUNCH CDUMMY (fork để tránh hang) ===")
+		local ok, slave = pcall(skynet.newservice, "cdummy")
+		if not ok then
+			skynet.abort()
+		end
+		skynet.name(".cslave", slave)
 
-        -- Fork cdummy + harbor
-        local slave
-        skynet.fork(function()
-            local ok, s = pcall(skynet.newservice, "cdummy")
-            if not ok then
-                skynet.error("=== CDUMMY FAILED: " .. tostring(s))
-                skynet.abort()
-            end
-            slave = s
-            skynet.name(".cslave", slave)
-            skynet.error("=== CDUMMY LAUNCHED SUCCESSFULLY IN FORK ===")
-        end)
-
-        skynet.sleep(300)  -- chờ 3 giây cho harbor ổn định
-
-        skynet.error("=== CDUMMY OK, tiếp tục launch service_mgr ===")
-
-        -- === LAUNCH SERVICE_MGR BẰNG DIRECT LAUNCH (quan trọng nhất) ===
-        skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct) ===")
-        local mgr = assert(skynet.launch("snlua", "service_mgr"))
-        skynet.name(".service", mgr)        -- ← ĐĂNG KÝ .service NGAY TẠI ĐÂY
-        skynet.error("=== SERVICE_MGR LAUNCHED & REGISTERED .service ===")
-        -- =================================================================
-
-        -- Launch datacenterd nếu cần
-        if standalone then
-            skynet.error("=== LAUNCH DATACENTERD ===")
-            local dc = skynet.newservice "datacenterd"
-            skynet.name(".datacenterd", dc)
-        end
-
-        skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
-
-    else  -- harbor ~= 0
-        skynet.error("=== LAUNCH CMASTER OK ===")
-        
-        -- Fork để cmaster không block bootstrap
-        skynet.fork(function()
-            local master = skynet.newservice("cmaster")
-            skynet.error("=== CMASTER SERVICE STARTED IN FORK ===")
-        end)
-        
-        skynet.sleep(100)  -- chờ cmaster listen (khoảng 1 giây)
-        
-        skynet.error("=== BẮT ĐẦU LAUNCH CSLAVE ===")
-        local slave_ok, slave = pcall(skynet.newservice, "cslave", skynet.getenv("master"))
-        if slave_ok then
-            skynet.error("=== CSLAVE LAUNCHED SUCCESSFULLY ===")
-        else
-            skynet.error("=== CSLAVE FAILED: " .. tostring(slave) .. " ===")
-        end
-		
+	else
 		if standalone then
 			if not pcall(skynet.newservice,"cmaster") then
-
 				skynet.abort()
 			end
 		end
@@ -111,3 +112,4 @@ skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor
 	pcall(skynet.newservice,skynet.getenv "start" or "main")
 	skynet.exit()
 end)
+]]
