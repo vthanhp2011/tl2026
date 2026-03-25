@@ -5,7 +5,8 @@ require "skynet.manager"	-- import skynet.launch, ...
 
 skynet.start(function()
     skynet.error("=== BOOTSTRAP START - harbor = " .. tostring(skynet.getenv("harbor")) .. ", standalone = " .. tostring(skynet.getenv("standalone")) .. " ===")
-
+	
+	local standalone = skynet.getenv "standalone"
     local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 
     -- Launcher + register (theo yêu cầu)
@@ -38,11 +39,45 @@ skynet.start(function()
         skynet.error("=== BỎ QUA DATACENTERD (single node harbor=0) ===")
 
         skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
+	else
+		if standalone then
+			if not pcall(skynet.newservice,"cmaster") then
+				skynet.abort()
+			end
+		end
 
-    else
-        skynet.error("=== HARBOR != 0 not supported yet ===")
-    end
+		local ok, slave = pcall(skynet.newservice, "cslave")
+		if not ok then
+			skynet.abort()
+		end
+		skynet.name(".cslave", slave)
+	end
+	
+	if standalone then
+		local datacenter = skynet.newservice "datacenterd"
+		skynet.name("DATACENTER", datacenter)
+	end
+--[[
 
+
+	local enablessl = skynet.getenv "enablessl"
+	if enablessl then
+		service.new("ltls_holder", function ()
+			local c = require "ltls.init.c"
+			c.constructor()
+		end)
+	end
+
+	local enablecipher = skynet.getenv "enablecipher"
+	if enablecipher then
+		service.new("lcipher_holder", function ()
+			local c = require "lcipher.init.c"
+			c.constructor()
+		end)
+	end
+	pcall(skynet.newservice,skynet.getenv "start" or "main")
+
+]]
     -- Launch main bằng direct launch + delay
     local start_name = skynet.getenv("start") or "main"
     skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
