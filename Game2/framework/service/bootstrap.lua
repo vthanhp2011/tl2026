@@ -55,6 +55,9 @@ skynet.start(function()
 		local datacenter = skynet.newservice "datacenterd"
 		skynet.name("DATACENTER", datacenter)
 	end
+	-- 2. Khởi tạo .service (bắt buộc trước khi dùng uniqueservice/ltls)
+	skynet.newservice("service")
+	skynet.sleep(200)   -- chờ .service register xong
 
 	-- ================== SSL HOLDER (giữ nguyên code của bạn) ==================
 	local enablessl = skynet.getenv "enablessl"
