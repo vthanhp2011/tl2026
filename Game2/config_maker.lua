@@ -1,16 +1,14 @@
 local env          = arg[1] or "debug"
-local script_root  = arg[2] or "/home/tlbb_spug/Script"
+local script_root  = arg[2] or "./Script"
 local processid    = tonumber(arg[3]) or 2
 local svrtype      = arg[4] or "Game"
-local scene_config = arg[5] or "/home/tlbb_spug/Scene"
+local scene_config = arg[5] or "./Scene"
 local loglevel 	   = "1"
--- FIX LUASERVICE PATH
-local luaservice_path = "./?.lua;./services/?.lua;./framework/service/?.lua;./cluster/service/?.lua;./framework/lualib/?.lua;./lualib/?.lua"
-package.path = luaservice_path .. ";" .. package.path
+
 local config = string.format([[
     env = "%s"
     script_root = "%s"
-    include "config.path"
+    include "config.lua"
     thread = 64
     harbor = 0
     standalone  = nil          -- hoặc để trống, không set = true
@@ -18,8 +16,8 @@ local config = string.format([[
     address     = nil
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
-    enablessl = true --Tắt tạm SSL/Cipher false
-    enablecipher = true --Tắt tạm SSL/Cipher
+    enablessl = true --Enable SSL
+    enablecipher = true --Enable Cipher
     loglevel = %s
     process_id = %d
     scene_config_env = "%s"

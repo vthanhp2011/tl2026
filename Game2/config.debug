@@ -1,6 +1,6 @@
     env = "debug"
     script_root = "/home/tlbb_spug/Script"
-    include "config.path"
+    include "config.lua"
     thread = 64
     harbor = 0
     standalone  = nil          -- hoặc để trống, không set = true
@@ -8,8 +8,8 @@
     address     = nil
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
-    enablessl = true --Tắt tạm SSL/Cipher false
-    enablecipher = true --Tắt tạm SSL/Cipher
+    enablessl = true --Enable SSL
+    enablecipher = true --Enable Cipher
     loglevel = 1
     process_id = 2
     scene_config_env = "/home/tlbb_spug/Scene"

@@ -1,25 +1,18 @@
 local skynet = require "skynet"
-require "skynet.manager"
-
-local database = {}
+local class = require "class"
+local CfgHelper = require "cfghelper":getinstance()
+local CMD = setmetatable({}, {
+    __index = function(_, k)
+        local method = CfgHelper[k]
+        assert(method, k)
+        return function(...) return method(CfgHelper, ...) end
+    end
+})
 
 skynet.start(function()
-    skynet.error("=== CFGDB STARTED SUCCESSFULLY ===")
-    skynet.name(".CfgDB", skynet.self())
-
-    skynet.dispatch("lua", function(_, _, op, key, value)
-        if op == "set" or op == nil then
-            if key then
-                database[key] = value
-                skynet.retpack(true)
-            end
-        elseif op == "get" then
-            skynet.retpack(database[key])
-        elseif op == "clear" then
-            database = {}
-            skynet.retpack(true)
-        else
-            skynet.retpack(nil)
-        end
+    skynet.dispatch("lua", function(_, _, command, ...)
+        print(...)
+        local f = assert(CMD[command], command)
+        skynet.ret(skynet.pack(f(...)))
     end)
 end)

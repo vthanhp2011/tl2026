@@ -35,8 +35,6 @@ skynet.start(function()
         skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct) ===")
         local mgr = assert(skynet.launch("snlua", "service_mgr"))
         skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
-
-        skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
 	else
 		if standalone then
 			if not pcall(skynet.newservice,"cmaster") then
@@ -55,44 +53,60 @@ skynet.start(function()
 		local datacenter = skynet.newservice "datacenterd"
 		skynet.name("DATACENTER", datacenter)
 	end
-	-- 2. Khởi tạo .service (bắt buộc trước khi dùng uniqueservice/ltls)
-	skynet.newservice("service")
+	-- 2. Khởi tạo .service (bắt buộc cho service.new)
+	local service_addr = skynet.newservice("service")
+	if not service_addr then
+		skynet.error("=== FAILED TO LAUNCH .service (service provider) ===")
+		skynet.abort()
+	end
 	skynet.sleep(200)   -- chờ .service register xong
 
-	-- ================== SSL HOLDER ==================
+	-- ================== SSL/Cipher Holder ==================
 	local enablessl = skynet.getenv "enablessl"
-	if enablessl then
+	if enablessl and enablessl ~= "false" and enablessl ~= "0" then
 		skynet.error("=== ENABLE SSL MODE - CHECKING LTLS ===")
 		local ok, ltls = pcall(require, "ltls.init.c")
-		if ok and ltls then
+		if ok and ltls and ltls.constructor then
 			skynet.error("=== LTLS AVAILABLE - STARTING LTLS HOLDER ===")
-			skynet.uniqueservice(".service")
-			
-			service.new("ltls_holder", function ()
+			local succ, addr = pcall(service.new, "ltls_holder", function()
 				ltls.constructor()
-				skynet.error("=== LTLS HOLDER INITIALIZED SUCCESSFULLY ===")
+				skynet.register(".ltls_holder")
+				skynet.error("=== LTLS HOLDER REGISTERED ===")
 			end)
+			if not succ then
+				skynet.error("=== LTLS_HOLDER LAUNCH FAILED:", tostring(addr))
+			end
 		else
 			skynet.error("=== LTLS NOT AVAILABLE - SKIPPING SSL ===")
 		end
 	end
-	--[[
 
 	local enablecipher = skynet.getenv "enablecipher"
-	if enablecipher then
-		service.new("lcipher_holder", function ()
-			local c = require "lcipher.init.c"
-			c.constructor()
-		end)
+	if enablecipher and enablecipher ~= "false" and enablecipher ~= "0" then
+		skynet.error("=== ENABLE CIPHER MODE - CHECKING LCIPHER ===")
+		local ok, lcipher = pcall(require, "lcipher.init.c")
+		if ok and lcipher and lcipher.constructor then
+			skynet.error("=== LCIPHER AVAILABLE - STARTING LCIPHER HOLDER ===")
+			local succ, addr = pcall(service.new, "lcipher_holder", function()
+				lcipher.constructor()
+				skynet.register(".lcipher_holder")
+				skynet.error("=== LCIPHER HOLDER REGISTERED ===")
+			end)
+			if not succ then
+				skynet.error("=== LCIPHER_HOLDER LAUNCH FAILED:", tostring(addr))
+			end
+		else
+			skynet.error("=== LCIPHER NOT AVAILABLE - SKIPPING CIPHER ===")
+		end
 	end
-	]]
 
-	--pcall(skynet.newservice,skynet.getenv "start" or "main")
+
+	pcall(skynet.newservice,skynet.getenv "start" or "main")
 
     -- Launch main bằng direct launch + delay
-    local start_name = skynet.getenv("start") or "main"
-    skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
-    local main_srv = assert(skynet.launch("snlua", start_name))
+    --local start_name = skynet.getenv("start") or "main"
+    --skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
+    --local main_srv = assert(skynet.launch("snlua", start_name))
 
 	skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
 
