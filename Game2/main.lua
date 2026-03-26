@@ -28,6 +28,10 @@ end
 
 local function init_common_server(processid)
     skynet.error("=== init_common_server BẮT ĐẦU ===")
+    
+	skynet.name(".cluster_agent", skynet.newservice("cluster_agent", processid))
+	skynet.send(".cluster_agent", "lua", "init")
+
     skynet.error("=== init_common_server HOÀN TẤT (chưa cần cluster_agent) ===")
 end
 
@@ -44,7 +48,6 @@ skynet.start(function()
     end
 
     skynet.error("=== MAIN.LUA: TẤT CẢ SERVICE ĐÃ XỬ LÝ XONG ===")
-    skynet.error("=== SERVER GAME ĐÃ KHỞI ĐỘNG THÀNH CÔNG - CHẠY VÔ HẠN ===")
 
     skynet.sleep(0)   -- giữ server sống mãi
 end)
