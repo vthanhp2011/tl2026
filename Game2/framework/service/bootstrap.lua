@@ -6,14 +6,7 @@ require "skynet.manager"	-- import skynet.launch, ...
 
 
 skynet.start(function()
--- Thêm package.path để bao quát root và các thư mục service
---[[
-    package.path = "./?.lua;./services/?.lua;./cluster/?.lua;./framework/service/?.lua;./framework/lualib/?.lua;./lualib/?.lua;" .. package.path
 
-    print("=== PACKAGE.PATH ĐÃ ĐƯỢC THÊM THỦ CÔNG ===")
-    print("Current package.path = " .. package.path)
-	]]
-	
 	local standalone = skynet.getenv "standalone"
     local harbor_id = tonumber(skynet.getenv "harbor" or 0)
 

@@ -4,6 +4,9 @@ local processid    = tonumber(arg[3]) or 2
 local svrtype      = arg[4] or "Game"
 local scene_config = arg[5] or "/home/tlbb_spug/Scene"
 local loglevel 	   = "1"
+-- FIX LUASERVICE PATH
+local luaservice_path = "./?.lua;./services/?.lua;./framework/service/?.lua;./cluster/service/?.lua;./framework/lualib/?.lua;./lualib/?.lua"
+package.path = luaservice_path .. ";" .. package.path
 local config = string.format([[
     env = "%s"
     script_root = "%s"

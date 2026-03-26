@@ -5,26 +5,8 @@ skynet.error("=== MAIN.LUA STARTED - svrtype = " .. tostring(skynet.getenv("svrt
 
 local function init_manager_server(processid)
     skynet.error("=== init_manager_server BẮT ĐẦU (process_id = " .. processid .. ") ===")
-    
-skynet.error("=== BẮT ĐẦU LAUNCH SERVICE_MGR (direct) ===")
-skynet.newservice("service_mgr")     -- service này có
 
--- Bỏ qua 2 service chưa tồn tại trong repo hiện tại
--- skynet.newservice("cluster_db_mgr")
--- skynet.newservice("cluster_mgr", tonumber(process_id) or 2)
-
-skynet.error("=== BẮT ĐẦU LAUNCH CFGDB ===")
-local cfgdb = skynet.newservice("cfgdb")   -- service này có
-if cfgdb then
-    skynet.error("=== CFGDB LAUNCHED SUCCESSFULLY ===")
-else
-    skynet.error("❌ cfgdb LAUNCH FAILED")
-end
-
-skynet.error("=== init_manager_server HOÀN TẤT ===")
-
-    --[[
-        local services = {
+    local services = {
         {name = "cluster_db_mgr", register = ".cluster_db_mgr"},
         {name = "cluster_mgr",    register = ".cluster_mgr", arg = processid},
         {name = "cfgdb",          register = ".CfgDB"}
@@ -41,7 +23,7 @@ skynet.error("=== init_manager_server HOÀN TẤT ===")
     end
 
     skynet.error("=== init_manager_server HOÀN TẤT ===")
-    ]]
+    
 end
 
 local function init_common_server(processid)
