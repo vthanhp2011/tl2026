@@ -15,6 +15,9 @@ skynet.start(function()
             end
         elseif op == "get" then
             skynet.retpack(database[key])
+        elseif op == "clear" then
+            database = {}
+            skynet.retpack(true)
         else
             skynet.retpack(nil)
         end
