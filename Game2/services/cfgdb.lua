@@ -1,4 +1,28 @@
---[[local skynet = require "skynet"
+local skynet = require "skynet"
+require "skynet.manager"
+
+local db = {}
+
+skynet.start(function()
+    skynet.error("=== CFGDB STARTED SUCCESSFULLY ===")
+    skynet.name(".CfgDB", skynet.self())
+
+    skynet.dispatch("lua", function(session, source, cmd, key, value)
+        if cmd == "set" or cmd == nil then
+            if key then
+                db[key] = value
+                skynet.retpack(true)
+            end
+        elseif cmd == "get" then
+            skynet.retpack(db[key])
+        else
+            skynet.retpack(nil)
+        end
+    end)
+end)
+
+--[[
+local skynet = require "skynet"
 local class = require "class"
 local CfgHelper = require "cfghelper":getinstance()
 local CMD = setmetatable({}, {
@@ -17,21 +41,3 @@ skynet.start(function()
     end)
 end)
 ]]
-local skynet = require "skynet"
-require "skynet.manager"
-
-local db = {}
-
-skynet.start(function()
-    skynet.error("=== CFGDB STARTED SUCCESSFULLY ===")
-    skynet.name(".CfgDB", skynet.self())
-
-    skynet.dispatch("lua", function(_, _, key, value)
-        if value ~= nil then
-            db[key] = value
-            skynet.retpack(true)
-        else
-            skynet.retpack(db[key])
-        end
-    end)
-end)
