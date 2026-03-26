@@ -36,9 +36,6 @@ skynet.start(function()
         local mgr = assert(skynet.launch("snlua", "service_mgr"))
         skynet.error("=== SERVICE_MGR LAUNCHED SUCCESSFULLY ===")
 
-        -- BỎ DATACENTERD khi harbor=0 (single node)
-        skynet.error("=== BỎ QUA DATACENTERD (single node harbor=0) ===")
-
         skynet.error("=== TOÀN BỘ BOOTSTRAP OK, BẮT ĐẦU MAIN.LUA ===")
 	else
 		if standalone then
@@ -53,12 +50,12 @@ skynet.start(function()
 		end
 		skynet.name(".cslave", slave)
 	end
-	
+
 	if standalone then
 		local datacenter = skynet.newservice "datacenterd"
 		skynet.name("DATACENTER", datacenter)
 	end
-
+	
 	local enablessl = skynet.getenv "enablessl"
 	if enablessl then
 		service.new("ltls_holder", function ()
@@ -66,6 +63,7 @@ skynet.start(function()
 			c.constructor()
 		end)
 	end
+	--[[
 
 	local enablecipher = skynet.getenv "enablecipher"
 	if enablecipher then
@@ -74,13 +72,15 @@ skynet.start(function()
 			c.constructor()
 		end)
 	end
-	pcall(skynet.newservice,skynet.getenv "start" or "main")
---[[
+	]]
+
+	--pcall(skynet.newservice,skynet.getenv "start" or "main")
+
     -- Launch main bằng direct launch + delay
     local start_name = skynet.getenv("start") or "main"
     skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
     local main_srv = assert(skynet.launch("snlua", start_name))
-]]
+
 	skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
 
 	skynet.sleep(0)     -- sleep vô hạn = giữ process sống
