@@ -8,8 +8,8 @@
     address     = nil
     start = "main" -- main script
     bootstrap = "snlua bootstrap"	-- The service for bootstrap
-    enablessl = false --Tắt tạm SSL/Cipher
-    enablecipher = false --Tắt tạm SSL/Cipher
+    enablessl = true --Tắt tạm SSL/Cipher false
+    enablecipher = true --Tắt tạm SSL/Cipher
     loglevel = 1
     process_id = 2
     scene_config_env = "/home/tlbb_spug/Scene"

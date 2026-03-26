@@ -58,8 +58,6 @@ skynet.start(function()
 		local datacenter = skynet.newservice "datacenterd"
 		skynet.name("DATACENTER", datacenter)
 	end
---[[
-
 
 	local enablessl = skynet.getenv "enablessl"
 	if enablessl then
@@ -78,7 +76,6 @@ skynet.start(function()
 	end
 	pcall(skynet.newservice,skynet.getenv "start" or "main")
 
-]]
     -- Launch main bằng direct launch + delay
     local start_name = skynet.getenv("start") or "main"
     skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
