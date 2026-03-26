@@ -75,12 +75,13 @@ skynet.start(function()
 		end)
 	end
 	pcall(skynet.newservice,skynet.getenv "start" or "main")
-
+--[[
     -- Launch main bằng direct launch + delay
     local start_name = skynet.getenv("start") or "main"
     skynet.error("=== LAUNCHING " .. start_name .. " bằng direct launch ===")
     local main_srv = assert(skynet.launch("snlua", start_name))
-    skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
+]]
+	skynet.error("=== MAIN.LUA ĐÃ ĐƯỢC LAUNCH THÀNH CÔNG ===")
 
 	skynet.sleep(0)     -- sleep vô hạn = giữ process sống
     --skynet.exit()

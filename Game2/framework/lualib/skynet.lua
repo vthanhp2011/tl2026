@@ -589,6 +589,10 @@ function skynet.call(addr, typename, ...)
 	end
 
 	local p = proto[typename]
+	if not p then
+		error(string.format("Protocol %s is not registered", tostring(typename)))
+	end
+	
 	local session = c.send(addr, p.id , nil , p.pack(...))
 	if session == nil then
 		error("call to invalid address " .. skynet.address(addr))
