@@ -2,7 +2,7 @@ local skynet = require "skynet"
 local service = require "skynet.service"
 
 skynet.start(function()
-    skynet.register(".service")
+    skynet.name(".service", skynet.self())
     skynet.error("=== .service REGISTERED SUCCESSFULLY ===")
 
     skynet.dispatch("lua", function(session, source, command, ...)
@@ -12,10 +12,13 @@ skynet.start(function()
                 skynet.ret(skynet.pack(addr))
             else
                 skynet.ret()
-                skynet.error("LAUNCH service failed:", ...)
+                skynet.error("service LAUNCH failed:", ...)
             end
         elseif command == "KILL" then
             skynet.kill(...)
+        else
+            -- Handle uniqueservice call (command is nil)
+            skynet.ret(skynet.pack(skynet.self()))
         end
     end)
 end)

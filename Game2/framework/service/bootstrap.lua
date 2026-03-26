@@ -59,18 +59,22 @@ skynet.start(function()
 	skynet.newservice("service")
 	skynet.sleep(200)   -- chờ .service register xong
 
-	-- ================== SSL HOLDER (giữ nguyên code của bạn) ==================
+	-- ================== SSL HOLDER ==================
 	local enablessl = skynet.getenv "enablessl"
 	if enablessl then
-		skynet.error("=== ENABLE SSL MODE - STARTING LTLS HOLDER ===")
-		-- Đảm bảo .service đã tồn tại trước khi gọi service.new
-		skynet.uniqueservice(".service")
-		
-		service.new("ltls_holder", function ()
-			local c = require "ltls.init.c"
-			c.constructor()
-			skynet.error("=== LTLS HOLDER INITIALIZED SUCCESSFULLY ===")
-		end)
+		skynet.error("=== ENABLE SSL MODE - CHECKING LTLS ===")
+		local ok, ltls = pcall(require, "ltls.init.c")
+		if ok and ltls then
+			skynet.error("=== LTLS AVAILABLE - STARTING LTLS HOLDER ===")
+			skynet.uniqueservice(".service")
+			
+			service.new("ltls_holder", function ()
+				ltls.constructor()
+				skynet.error("=== LTLS HOLDER INITIALIZED SUCCESSFULLY ===")
+			end)
+		else
+			skynet.error("=== LTLS NOT AVAILABLE - SKIPPING SSL ===")
+		end
 	end
 	--[[
 

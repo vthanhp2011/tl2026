@@ -14,7 +14,7 @@ script_root=/home/tlbb_spug/Script
 scene_config=/home/tlbb_spug/Scene
 fi
 port=$((6000 + processid))
-TCPListeningnum=`netstat -an | egrep ":${port}" | awk '$1 == "tcp" && $NF == "LISTEN" {print $0}' |wc -l`
+TCPListeningnum=`ss -tlnp | grep :${port} | wc -l`
 echo "TCPListeningnum =" $TCPListeningnum
 if [ "$svrtype" = "Game" ] && [ $TCPListeningnum -gt 0 ] ;then
     chmod +x nc.sh
